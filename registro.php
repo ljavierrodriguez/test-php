@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +10,15 @@
     
 </head>
 <body>
-    <form action="" method="post" class="form-register"> 
+    <form action="./actions/getRegistro.php" method="post" class="form-register"> 
     <h2 class="form__titulo">CREA UNA CUENTA</h2>   
     <div class="contenedor-inputs">
-        <input type="text" name="nombre" placeholder="&#128100;Nombre" class="input-48" required>
+        <input type="text" name="nombres" placeholder="&#128100;Nombre" class="input-48" required>
         <input type="text" name="apellidos" placeholder="&#128100;Apellidos" class="input-48" required>
         <input type="email" name="correo" placeholder="&#128231;Email" class="input-100" required>
         <input type="password" name="clave" placeholder="&#128272;Contraseña" class="input-48" required>
         <input type="submit" value="Registrarme" class="btn-enviar">
-        <p class="form__link">¿Ya tienes una cuenta? <a href="ingreso.html">Ingresa aquí</a></p>
-        
+        <p class="form__link">¿Ya tienes una cuenta? <a href="ingreso.php">Ingresa aquí</a></p>
     </div>
     
     </form>

@@ -22,8 +22,13 @@
             <li class="menu__item"><a href="nosotros.php" class="menu__link">Nosotros</a></li>
             <li class="menu__item"><a href="galeria.php" class="menu__link">Nuestros Productos</a></li>
             <li class="menu__item"><a href="contacto.php" class="menu__link">Contacto</a></li>
-            <li class="menu__item"><a href="ingreso.php" class="menu__link">Ingreso</a></li>
-            <li class="menu__item"><a href="registro.php" class="menu__link">Registro</a></li>
+
+            <?php if ($_SESSION['correo'] == "") { ?>
+                <li class="menu__item"><a href="ingreso.php" class="menu__link">Ingreso</a></li>
+                <li class="menu__item"><a href="registro.php" class="menu__link">Registro</a></li>
+            <?php } else { ?>
+                <li class="menu__item"><a href="ingreso.php" class="menu__link"><?=$_SESSION['correo']?></a></li>
+            <?php } ?>
         </ul>
         <div class="social-icon">
             <a href="" class="social-icon__link"><span class="icon-facebook"></span></a>
