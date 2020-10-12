@@ -1,3 +1,11 @@
+<?php
+$cart = 0;
+if(isset($_SESSION['cart'])){
+    foreach ($_SESSION['cart'] as $id => $value) {
+        $cart += $value['quantity'];
+    }
+}
+?>
 <header class="main-header">
     <div class="container container--flex">
         <div class="logo-container column column--50">
@@ -22,12 +30,19 @@
             <li class="menu__item"><a href="nosotros.php" class="menu__link">Nosotros</a></li>
             <li class="menu__item"><a href="galeria.php" class="menu__link">Nuestros Productos</a></li>
             <li class="menu__item"><a href="contacto.php" class="menu__link">Contacto</a></li>
+            <li class="menu__item">
+                <a href="cart.php" class="menu__link">
+                    <i class="fa fa-shopping-cart"></i> (<?= $cart ?>)
+                </a>
+            </li>
 
-            <?php if ($_SESSION['correo'] == "") { ?>
+            <?php if (@$_SESSION['correo'] == "") { ?>
                 <li class="menu__item"><a href="ingreso.php" class="menu__link">Ingreso</a></li>
                 <li class="menu__item"><a href="registro.php" class="menu__link">Registro</a></li>
             <?php } else { ?>
-                <li class="menu__item"><a href="ingreso.php" class="menu__link"><?=$_SESSION['correo']?></a></li>
+
+                <li class="menu__item"><a class="menu__link"><?= @$_SESSION['correo'] ?></a></li>
+                <li class="menu__item"><a href="salir.php" class="menu__link">Salir</a></li>
             <?php } ?>
         </ul>
         <div class="social-icon">

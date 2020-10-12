@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="css/font.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/galeria.css">
@@ -36,8 +37,12 @@
             <h2 class="group__title">Nuestros Productos</h2>
             <div class="container container--flex">
                 <div class="column column--50-25">
-                    <img src="Galeria/merluza.jpg" alt="" class="gallery__img gallery__img--big">
-                    <img src="Galeria/reineta.jpg" alt="" class="gallery__img gallery__img--small">
+                    <a href="./actions/getCart.php?product_id=1&action=add">
+                        <img src="Galeria/merluza.jpg" alt="" class="gallery__img gallery__img--big">
+                    </a>
+                    <a href="./actions/getCart.php?product_id=2&action=add">
+                        <img src="Galeria/reineta.jpg" alt="" class="gallery__img gallery__img--small">
+                    </a>
                 </div>
                 <div class="column column--50-25">
                     <img src="Galeria/carne.jpg" alt="" class="gallery__img gallery__img--small">
