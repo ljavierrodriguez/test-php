@@ -1,4 +1,5 @@
 <?php
+require("../conexion.php");
 require("../libs/functions.php");
 
 $correo = $_POST['correo'];

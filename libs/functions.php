@@ -4,7 +4,7 @@ session_start();
 function getIngreso($correo, $clave, $conn)
 {
     $sql = mysqli_query($conn, "SELECT * FROM tienda.users WHERE username='$correo' and password='$clave'");
-    if (mysqli_num_rows($sql) == 0) {
+    if (mysqli_num_rows($sql) > 0) {
         if ($row = mysqli_fetch_assoc($sql)) {
             $_SESSION["correo"] = $row['username'];
             header("Location: ../index.php");
@@ -15,12 +15,12 @@ function getIngreso($correo, $clave, $conn)
 }
 
 
-function getRegistro($nombres, $apellidos, $correo, $clave)
+function getRegistro($nombres, $apellidos, $correo, $clave, $conn)
 {
-    if ($correo == "admin@gmail.com" and $clave == "admin") {
-        $_SESSION["correo"] = $correo;
-        header("Location: ../index.php");
-    } else {
+    $sql = mysqli_query($conn, "INSERT INTO tienda.users (username, password) VALUES ('$correo', '$clave')");
+    if ($sql) {
         header("Location: ../ingreso.php");
+    } else {
+        header("Location: ../registro.php");
     }
 }
