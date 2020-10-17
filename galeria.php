@@ -45,26 +45,18 @@ require("./conexion.php");
                         <h1>No hay productos</h1>
                     </div>
                 <?php } else { ?>
-                    <div class="column column--50-25">
-                        <a href="./actions/getCart.php?product_id=1&action=add">
-                            <img src="Galeria/merluza.jpg" alt="" class="gallery__img gallery__img--big">
-                        </a>
-                        <a href="./actions/getCart.php?product_id=2&action=add">
-                            <img src="Galeria/reineta.jpg" alt="" class="gallery__img gallery__img--small">
-                        </a>
-                    </div>
-                    <div class="column column--50-25">
-                        <img src="Galeria/carne.jpg" alt="" class="gallery__img gallery__img--small">
-                        <img src="Galeria/lomoliso.jpg" alt="" class="gallery__img gallery__img--big">
-                    </div>
-                    <div class="column column--50-25">
-                        <img src="Galeria/pollo.jpg" alt="" class="gallery__img gallery__img--big">
-                        <img src="Galeria/trutro.jpg" alt="" class="gallery__img gallery__img--small">
-                    </div>
-                    <div class="column column--50-25">
-                        <img src="Galeria/verduras.jpg" alt="" class="gallery__img gallery__img--small">
-                        <img src="Galeria/Camarones.jpg" alt="" class="gallery__img gallery__img--big">
-                    </div>
+
+                    <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
+                        <div class="column column--50-25">
+                            <img src="Fotos/Pescados/Camarones.jpg" alt="" class="today-special__img">
+                            <div class="today-special__title"><?= $row['product_name'] ?></div>
+                            <div class="today-special__price">$<?= $row['price'] ?></div>
+                            <a href="./actions/getCart.php?product_id=<?= $row['id'] ?>&action=add">
+                                <i class="fa fa-shopping-cart"></i> Add to Cart
+                            </a>
+                        </div>
+                    <?php } ?>
+
                 <?php } ?>
 
             </div>
