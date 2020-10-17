@@ -1,9 +1,11 @@
 <?php
-//print_r($_POST);
+require("../libs/functions.php");
 
 $nombres = $_POST['nombres'];
 $apellidos = $_POST['apellidos'];
 $correo = $_POST['correo'];
 $clave = $_POST['clave'];
 
-echo "$nombres $apellidos $correo $clave";
+//echo "$correo $clave";
+
+getRegistro($nombres, $apellidos, $correo, $clave);

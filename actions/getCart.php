@@ -12,3 +12,17 @@ if(isset($_GET['product_id']) and $_GET['action'] == "add"){
 
     header("Location: ../cart.php");
 }
+
+if(isset($_GET['product_id']) and $_GET['action'] == "del"){
+    $product_id = $_GET['product_id'];
+
+    if(isset($_SESSION["cart"][$product_id])){
+        unset($_SESSION["cart"][$product_id]);
+    }
+
+    if(isset($_SESSION["cart"]) and count($_SESSION['cart']) == 0){
+        unset($_SESSION["cart"]);
+    }
+
+    header("Location: ../cart.php");
+}

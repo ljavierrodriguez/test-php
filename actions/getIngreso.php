@@ -6,6 +6,6 @@ $clave = $_POST['clave'];
 
 //echo "$correo $clave";
 
-getIngreso($correo, $clave);
+getIngreso($correo, $clave, $conn);
 
 

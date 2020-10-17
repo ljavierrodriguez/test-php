@@ -47,7 +47,7 @@ require("./conexion.php");
                 <?php } else { ?>
 
                     <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
-                        <div class="column column--50-25">
+                        <div class="column column--50-25" style="padding-left: 1px; padding-right: 1px; margin-bottom: 5px;">
                             <img src="Fotos/Pescados/Camarones.jpg" alt="" class="today-special__img">
                             <div class="today-special__title"><?= $row['product_name'] ?></div>
                             <div class="today-special__price">$<?= $row['price'] ?></div>

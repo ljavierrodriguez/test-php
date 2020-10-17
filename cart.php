@@ -1,5 +1,6 @@
 <?php
 session_start();
+require("./conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -45,18 +46,37 @@ session_start();
                                 <th>Quantity</th>
                                 <th>Price</th>
                                 <th>Total</th>
+                                <th width="5%">Action</th>
                             </tr>
-
+                            <?php $total_cart = 0; ?>
                             <?php foreach ($_SESSION['cart'] as $id => $value) { ?>
-                                <tr>
-                                    <td><?=$id?></td>
-                                    <td>Product Name</td>
-                                    <td><?=$value['quantity']?></td>
-                                    <td>$0.00</td>
-                                    <td>$0.00</td>
-                                </tr>
+                                <?php
+                                $sql = mysqli_query($conn, "SELECT * FROM tienda.products WHERE id=$id");
+                                if ($row = mysqli_fetch_assoc($sql)) {
+                                    $total_cart += $value['quantity'] * $row['price'];
+                                ?>
+                                    <tr>
+                                        <td><?= $id ?></td>
+                                        <td><?= $row['product_name'] ?></td>
+                                        <td><?= $value['quantity'] ?></td>
+                                        <td>$<?= $row['price'] ?></td>
+                                        <td>$<?= $value['quantity'] * $row['price'] ?></td>
+                                        <td>
+                                            <a href="./actions/getCart.php?product_id=<?= $row['id'] ?>&action=del">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                             <?php } ?>
-
+                            <tr>
+                                <td colspan="4" style="color: white; background-color: black; text-align: right;">
+                                    <b>Total:</b>
+                                </td>
+                                <td style="color: white; background-color: blue; text-align: center;">
+                                    $<?= $total_cart ?>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -71,7 +91,7 @@ session_start();
     include("templates/footer.php");
     ?>
     <script src="JS/menu.js"></script>
-
+    <?= mysqli_close($conn) ?>
 </body>
 
 </html>
