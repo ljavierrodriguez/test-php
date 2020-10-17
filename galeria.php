@@ -1,5 +1,6 @@
 <?php
 session_start();
+require("./conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,26 +37,36 @@ session_start();
         <div class="group gallery">
             <h2 class="group__title">Nuestros Productos</h2>
             <div class="container container--flex">
-                <div class="column column--50-25">
-                    <a href="./actions/getCart.php?product_id=1&action=add">
-                        <img src="Galeria/merluza.jpg" alt="" class="gallery__img gallery__img--big">
-                    </a>
-                    <a href="./actions/getCart.php?product_id=2&action=add">
-                        <img src="Galeria/reineta.jpg" alt="" class="gallery__img gallery__img--small">
-                    </a>
-                </div>
-                <div class="column column--50-25">
-                    <img src="Galeria/carne.jpg" alt="" class="gallery__img gallery__img--small">
-                    <img src="Galeria/lomoliso.jpg" alt="" class="gallery__img gallery__img--big">
-                </div>
-                <div class="column column--50-25">
-                    <img src="Galeria/pollo.jpg" alt="" class="gallery__img gallery__img--big">
-                    <img src="Galeria/trutro.jpg" alt="" class="gallery__img gallery__img--small">
-                </div>
-                <div class="column column--50-25">
-                    <img src="Galeria/verduras.jpg" alt="" class="gallery__img gallery__img--small">
-                    <img src="Galeria/Camarones.jpg" alt="" class="gallery__img gallery__img--big">
-                </div>
+                <?php
+                $sql = mysqli_query($conn, "SELECT * FROM tienda.products");
+                if (mysqli_num_rows($sql) == 0) {
+                ?>
+                    <div class="column column--50-25">
+                        <h1>No hay productos</h1>
+                    </div>
+                <?php } else { ?>
+                    <div class="column column--50-25">
+                        <a href="./actions/getCart.php?product_id=1&action=add">
+                            <img src="Galeria/merluza.jpg" alt="" class="gallery__img gallery__img--big">
+                        </a>
+                        <a href="./actions/getCart.php?product_id=2&action=add">
+                            <img src="Galeria/reineta.jpg" alt="" class="gallery__img gallery__img--small">
+                        </a>
+                    </div>
+                    <div class="column column--50-25">
+                        <img src="Galeria/carne.jpg" alt="" class="gallery__img gallery__img--small">
+                        <img src="Galeria/lomoliso.jpg" alt="" class="gallery__img gallery__img--big">
+                    </div>
+                    <div class="column column--50-25">
+                        <img src="Galeria/pollo.jpg" alt="" class="gallery__img gallery__img--big">
+                        <img src="Galeria/trutro.jpg" alt="" class="gallery__img gallery__img--small">
+                    </div>
+                    <div class="column column--50-25">
+                        <img src="Galeria/verduras.jpg" alt="" class="gallery__img gallery__img--small">
+                        <img src="Galeria/Camarones.jpg" alt="" class="gallery__img gallery__img--big">
+                    </div>
+                <?php } ?>
+
             </div>
         </div>
     </main>
@@ -66,6 +77,8 @@ session_start();
     <script src="JS/menu.js"></script>
     <script src="JS/modal.js"></script>
 
+
+    <?= mysqli_close($conn) ?>
 </body>
 
 </html>
