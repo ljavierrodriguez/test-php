@@ -17,7 +17,7 @@ function getIngreso($correo, $clave, $conn)
 
 function getRegistro($nombres, $apellidos, $correo, $clave, $conn)
 {
-    $sql = mysqli_query($conn, "INSERT INTO tienda.users (username, password) VALUES ('$correo', '$clave')");
+    $sql = mysqli_query($conn, "INSERT INTO tienda.users (nombre, apellidos, username, password) VALUES ('$nombres', '$apellidos', '$correo', '$clave')");
     if ($sql) {
         header("Location: ../ingreso.php");
     } else {
