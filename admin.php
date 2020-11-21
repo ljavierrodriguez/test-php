@@ -30,7 +30,7 @@ require("./conexion.php");
 
     <section class="banner">
         <img src="Fotos/Galeria/banner.jpg" alt="" class="banner__img">
-        <div class="banner__content">Nuestros Mejores Productos</div>
+        <div class="banner__content">Administrar Productos</div>
     </section>
 
     <main class="main">
@@ -45,17 +45,39 @@ require("./conexion.php");
                         <h1>No hay productos</h1>
                     </div>
                 <?php } else { ?>
+                    <a href="./crear.php">Crear Producto</a>
+                    <table border="0" width="75%" align="center">
+                            <tr bgcolor="#cccccc">
+                                <th>#</th>
+                                <th>Foto</th>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Acciones</th>
+                            </tr>
 
-                    <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
-                        <div class="column column--50-25" style="padding-left: 1px; padding-right: 1px; margin-bottom: 5px;">
-                            <img src="Fotos/<?= $row['filename']?>" alt="" class="today-special__img">
-                            <div class="today-special__title"><?= $row['product_name'] ?></div>
-                            <div class="today-special__price">$<?= $row['price'] ?></div>
-                            <a href="./actions/getCart.php?product_id=<?= $row['id'] ?>&action=add">
-                                <i class="fa fa-shopping-cart"></i> Add to Cart
-                            </a>
-                        </div>
-                    <?php } ?>
+                            <?php while ($row = mysqli_fetch_assoc($sql)) { ?>
+
+                            <tr>
+                                <td><?=$row['id']?></td>
+                                <td width="100"><img src="Fotos/<?= $row['filename']?>" width="100%"  alt="producto" /></td>
+                                <td><?=$row['product_name']?></td>
+                                <td><?=$row['price']?></td>
+                                <td width="30" align="center">
+                                <a href="edit.php?product_id=<?= $row['id'] ?>&action=edit">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a href="delete.php?product_id=<?= $row['id'] ?>&action=delete">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                                </td>
+                            </tr>
+                            
+                            <?php } ?>
+
+
+                        </table>
+
+                    
 
                 <?php } ?>
 

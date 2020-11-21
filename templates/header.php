@@ -40,7 +40,7 @@ if(isset($_SESSION['cart'])){
                 <li class="menu__item"><a href="ingreso.php" class="menu__link">Ingreso</a></li>
                 <li class="menu__item"><a href="registro.php" class="menu__link">Registro</a></li>
             <?php } else { ?>
-
+                <li class="menu__item"><a class="menu__link" href="admin.php">Administracion</a></li>
                 <li class="menu__item"><a class="menu__link"><?= @$_SESSION['correo'] ?></a></li>
                 <li class="menu__item"><a href="salir.php" class="menu__link">Salir</a></li>
             <?php } ?>

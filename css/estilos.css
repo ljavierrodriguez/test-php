@@ -298,6 +298,11 @@ h1,h2,h3,h4{
     right: 5px;
 }
 
+.foto {
+    width: 130px;
+    height: 130px;
+}
+
 /*----------------Responsive-----------------*/
 
 @media screen and (min-width:480px) {
