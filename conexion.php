@@ -1,5 +1,5 @@
 <?php 
-define("DB_SERVER", "192.168.0.8");
+define("DB_SERVER", "192.168.0.10");
 define("DB_USERNAME", "lrodriguez");
 define("DB_PASSWORD", "derek.15");
 define("DB_NAME", "tienda");
