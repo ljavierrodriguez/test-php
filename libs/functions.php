@@ -6,6 +6,7 @@ function getIngreso($correo, $clave, $conn)
     $sql = mysqli_query($conn, "SELECT * FROM tienda.users WHERE username='$correo' and password='$clave'");
     if (mysqli_num_rows($sql) > 0) {
         if ($row = mysqli_fetch_assoc($sql)) {
+            $_SESSION['user_id'] = $row['id'];
             $_SESSION["correo"] = $row['username'];
             $_SESSION["isAdmin"] = ($row['username'] === 'admin@gmail.com' ? true : false);
             header("Location: ../index.php");
@@ -83,8 +84,8 @@ function getDeleteProducto($id, $conn)
     }
 }
 
-function addCart($id, $conn){
-    $sql = mysqli_query($conn, "INSERT INTO tienda.cart (product_id, quantity) VALUES ($id, 1);");
+function addCart($id, $user_id, $conn){
+    $sql = mysqli_query($conn, "INSERT INTO tienda.cart (product_id, user_id, quantity) VALUES ($id, $user_id, 1);");
     if ($sql) {
         header("Location: ../cart.php");
     } else {
@@ -92,8 +93,8 @@ function addCart($id, $conn){
     }
 }
 
-function updateCart($id, $conn){
-    $sql = mysqli_query($conn, "UPDATE tienda.cart SET quantity = quantity + 1 WHERE id=$id;");
+function updateCart($id, $user_id, $conn){
+    $sql = mysqli_query($conn, "UPDATE tienda.cart SET quantity = quantity + 1 WHERE product_id=$id and user_id=$user_id;");
     if ($sql) {
         header("Location: ../cart.php");
     } else {
@@ -101,8 +102,8 @@ function updateCart($id, $conn){
     }
 }
 
-function deleteCart($id, $conn){
-    $sql = mysqli_query($conn, "DELETE FROM tienda.cart WHERE id=$id;");
+function deleteCart($id, $user_id, $conn){
+    $sql = mysqli_query($conn, "DELETE FROM tienda.cart WHERE product_id=$id and user_id=$user_id;");
     if ($sql) {
         header("Location: ../cart.php");
     } else {
@@ -110,8 +111,8 @@ function deleteCart($id, $conn){
     }
 }
 
-function deleteAllCart($conn){
-    $sql = mysqli_query($conn, "DELETE FROM tienda.cart;");
+function deleteAllCart($user_id, $conn){
+    $sql = mysqli_query($conn, "DELETE FROM tienda.cart WHERE user_id=$user_id;");
     if ($sql) {
         header("Location: ../cart.php");
     } else {
