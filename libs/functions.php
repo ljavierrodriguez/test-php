@@ -7,6 +7,7 @@ function getIngreso($correo, $clave, $conn)
     if (mysqli_num_rows($sql) > 0) {
         if ($row = mysqli_fetch_assoc($sql)) {
             $_SESSION["correo"] = $row['username'];
+            $_SESSION["isAdmin"] = ($row['username'] === 'admin@gmail.com' ? true : false);
             header("Location: ../index.php");
         }
     } else {
@@ -81,4 +82,41 @@ function getDeleteProducto($id, $conn)
         header("Location: ../delete.php");
     }
 }
+
+function addCart($id, $conn){
+    $sql = mysqli_query($conn, "INSERT INTO tienda.cart (product_id, quantity) VALUES ($id, 1);");
+    if ($sql) {
+        header("Location: ../cart.php");
+    } else {
+        header("Location: ../cart.php");
+    }
+}
+
+function updateCart($id, $conn){
+    $sql = mysqli_query($conn, "UPDATE tienda.cart SET quantity = quantity + 1 WHERE id=$id;");
+    if ($sql) {
+        header("Location: ../cart.php");
+    } else {
+        header("Location: ../cart.php");
+    }
+}
+
+function deleteCart($id, $conn){
+    $sql = mysqli_query($conn, "DELETE FROM tienda.cart WHERE id=$id;");
+    if ($sql) {
+        header("Location: ../cart.php");
+    } else {
+        header("Location: ../cart.php");
+    }
+}
+
+function deleteAllCart($conn){
+    $sql = mysqli_query($conn, "DELETE FROM tienda.cart;");
+    if ($sql) {
+        header("Location: ../cart.php");
+    } else {
+        header("Location: ../cart.php");
+    }
+}
+
 
